@@ -21,33 +21,27 @@ const recordCollection = {
 
 // Only change code below this line
 function updateRecords(records, id, prop, value) {
-  console.log("---before---");
-  console.log(recordCollection[id]);
 
-  if (value == "") {
-    console.log("value = empty");
-    delete recordCollection[id][prop];
-
-  } else if (prop == "tracks") {
-    console.log("value is tracks")
-    if (recordCollection[id].hasOwnProperty(prop)) {
-      console.log("tracks property exists");
-      recordCollection[id][prop].push(value);
+  if (value === "") {
+    delete records[id][prop];
+  } else if (prop === "tracks") {
+    if (records[id].hasOwnProperty(prop)) {
+      records[id][prop].push(value);
     } else { 
-      console.log("tracks property not found");
-      recordCollection[id][prop] = [];
-      recordCollection[id][prop].push(value);
+      records[id][prop] = [];
+      records[id][prop].push(value);
     } 
   } else {
-    console.log("not tracks");
-    recordCollection[id][prop] = value;
+    records[id][prop] = value;
   }
-  
-  console.log("---after---")
-  console.log(recordCollection[id]);
-  records = recordCollection[id][prop];
+
   return records;
 }
 
-
+console.log(updateRecords(recordCollection, 5439, 'artist', 'ABBA'));
+console.log(updateRecords(recordCollection, 5439, 'tracks', 'Take a Chance on Me'));
+console.log(updateRecords(recordCollection, 2548, 'artist', ''));
+console.log(updateRecords(recordCollection, 1245, 'tracks', 'Addicted to Love'));
+console.log(updateRecords(recordCollection, 2468, 'tracks', 'Free'));
+console.log(updateRecords(recordCollection, 2548, 'tracks', ''));
 console.log(updateRecords(recordCollection, 1245, 'albumTitle', 'Riptide'));
